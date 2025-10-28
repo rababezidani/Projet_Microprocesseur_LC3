@@ -1,96 +1,91 @@
 
 ---
 
-## ⚙️ Partie 1 — Programmation en Assembleur LC-3
+## ⚙️ Partie 1 — Programmation Assembleur LC-3
 
-Avant la conversion en assembleur, les routines ont d’abord été développées et testées en **langage C** afin de valider leur logique.  
-Elles ont ensuite été traduites en **assembleur LC-3** pour être exécutées sur le simulateur.
+Avant la conversion en assembleur, les routines ont été écrites en **C** pour valider la logique.  
+Elles ont ensuite été traduites et testées en **assembleur LC-3**.
 
-### 🔧 Routines implémentées
-| Routine | Description | Difficultés rencontrées |
-|----------|--------------|-------------------------|
-| `strlen` | Calcule la longueur d'une chaîne de caractères. | Détection du caractère nul. |
-| `index` | Recherche la première occurrence d’un caractère. | Gestion des adresses mémoire. |
-| `rindex` | Recherche la dernière occurrence d’un caractère. | Calcul inverse et gestion des indices. |
-| `strcmp` | Compare deux chaînes lexicographiquement. | Gestion des chaînes de longueurs différentes. |
-| `strcpy` | Copie une chaîne source vers une destination. | Gestion du dépassement mémoire. |
-| `strncpy` | Copie un nombre fixe de caractères. | Arrêt correct si chaîne source plus courte. |
-
-Les tests ont été effectués avec différents cas pour garantir la fiabilité et la robustesse des fonctions.
+| Routine | Description | Difficulté principale |
+|----------|--------------|------------------------|
+| `strlen` | Calcule la longueur d'une chaîne. | Détection du caractère nul. |
+| `index` | Trouve la première occurrence d’un caractère. | Gestion d’adresses mémoire. |
+| `rindex` | Recherche la dernière occurrence d’un caractère. | Parcours inverse de la chaîne. |
+| `strcmp` | Compare deux chaînes. | Longueurs différentes. |
+| `strcpy` | Copie la chaîne source vers une destination. | Dépassements mémoire. |
+| `strncpy` | Copie un nombre fixe de caractères. | Arrêt correct si chaîne courte. |
 
 ---
 
-## ⚡ Partie 2 — Câblage des Circuits sous Logisim
+## ⚡ Partie 2 — Câblage des Circuits Logisim
 
-Les circuits du processeur LC-3 ont été modélisés à l’aide de **Logisim Evolution**.  
-Chaque module a été implémenté et connecté selon le tableau d’instructions LC-3.
+### 🧠 Modules implémentés
 
-### 🧠 Modules réalisés
-
-#### 1️⃣ DecodeIR  
-- Extraction des champs d’instruction : opcode, registres, etc.  
+#### 🔹 DecodeIR
+- Extraction des champs `opcode`, registres, etc.  
 - Utilisation de multiplexeurs et décodeurs.  
-- Synchronisation des signaux entre modules (ALU, NZP, etc.).
+- Synchronisation avec ALU et NZP.
 
-#### 2️⃣ ALU  
-- Exécute les opérations **ADD**, **AND**, **NOT**, et les nouvelles instructions **BSF** et **BSB**.  
-- Gestion des entrées via les registres ou valeurs immédiates.  
-- Ajout de circuits pour parcourir les bits actifs dans les registres.
+#### 🔹 ALU
+- Exécute **ADD**, **AND**, **NOT**, **BSF**, **BSB**.  
+- Gestion d’opérandes immédiats et registres.  
+- Circuits additionnels pour scan de bits actifs.
 
-#### 3️⃣ NZP  
-- Met à jour les indicateurs **N**, **Z**, **P** selon le résultat de l’ALU.  
-- Gestion des transitions d’état et instructions ne modifiant pas ces flags.
+#### 🔹 NZP
+- Met à jour les indicateurs **N**, **Z**, **P** selon le résultat ALU.  
+- Gestion fine des transitions d’état.
 
-#### 4️⃣ Scan  
-- Implémente **BSF (bit scan forward)** et **BSB (bit scan backward)**.  
-- Recherche du premier bit actif dans un registre (dans un sens ou l’autre).  
-- Optimisation du circuit pour réduire les délais de propagation.
+#### 🔹 Scan
+- Implémente **BSF (Bit Scan Forward)** et **BSB (Bit Scan Backward)**.  
+- Optimisation du circuit pour limiter la profondeur.
 
-#### 5️⃣ WriteVal  
-- Écrit les résultats dans les registres cibles.  
-- Source de données : **ALU**, **Mémoire**, ou **PC** (compteur de programme).  
-- Multiplexeur pour choisir la bonne source selon l’instruction.
+#### 🔹 WriteVal
+- Sélectionne la bonne source de données (**ALU**, **Mémoire**, **PC**) via multiplexeurs.  
+- Écrit le résultat dans le registre cible.
 
 ---
 
 ## 🚧 Défis rencontrés
-
-- **Gestion des adresses mémoire :** éviter les erreurs de débordement.  
-- **Optimisation du câblage :** minimiser la profondeur des circuits et améliorer la vitesse.  
-- **Synchronisation des signaux :** assurer une coordination parfaite entre modules.  
-
----
-
-## ✅ Résultats et avancement
-
-- Modules **DecodeIR**, **ALU**, **NZP** et **Scan** terminés (version 1).  
-- **WriteVal** en cours d’intégration (version 2).  
-- Routines LC-3 **fonctionnelles et testées**.  
+- 🔸 Gestion rigoureuse des adresses mémoire  
+- 🔸 Optimisation du câblage pour réduire la latence  
+- 🔸 Synchronisation des signaux entre modules  
 
 ---
 
-## 🧪 Outils et environnement
+## ✅ Résultats
+- 🧩 Version 1 : Modules DecodeIR, ALU, NZP, Scan terminés  
+- ⚙️ Version 2 : WriteVal en cours d’intégration  
+- 💾 Routines LC-3 testées et fonctionnelles  
 
-- **Logisim Evolution** pour la conception des circuits.  
-- **Assembleur LC-3 (LC3Edit / PennSim)** pour la programmation et les tests.  
-- **Langage C** utilisé pour prototyper les routines avant conversion.
+---
+
+## 🧰 Outils utilisés
+| Outil | Utilisation |
+|--------|--------------|
+| **Logisim Evolution** | Simulation et conception du processeur |
+| **LC3Edit / PennSim** | Programmation et exécution LC-3 |
+| **Langage C** | Prototypage des routines avant conversion |
 
 ---
 
 ## 📘 Conclusion
 
-Ce projet a permis de mettre en pratique les concepts fondamentaux de l’architecture des microprocesseurs :  
-le décodage d’instructions, le traitement logique et arithmétique, la gestion des registres et la synchronisation matérielle.  
+Ce projet nous a permis de comprendre concrètement :
+- la structure interne d’un processeur,
+- le fonctionnement des modules logiques synchronisés,
+- la relation entre **assembleur** et **architecture matérielle**.
 
-Il constitue une base solide pour aborder la **conception de processeurs plus complexes** ou la **simulation matérielle temps réel**.
+Une expérience complète en **systèmes embarqués et architecture processeur** ⚡
+
+---
+
+## 👩‍💻 Auteurs
+
+| Nom | Rôle | Établissement |
+|------|------|----------------|
+| **Rababe Zidani** | Conception des circuits Logisim | Université Paris Cité – EIDD |
+| **Nissrine Elabjani** | Programmation assembleur & tests | Université Paris Cité – EIDD |
 
 ---
 
-## 🧑‍💻 Auteurs
-- **Rababe Zidani** — Conception et implémentation des circuits Logisim  
-- **Nissrine Elabjani** — Programmation assembleur LC-3 et tests unitaires  
-
-Université Paris Cité – École d’Ingénieurs Denis Diderot (EIDD)  
-Spécialité : **Systèmes Informatiques Embarqués (SIE)**
-
----
+⭐️ *Si ce projet vous a aidé ou inspiré, n’hésitez pas à lui donner une étoile sur GitHub !*
