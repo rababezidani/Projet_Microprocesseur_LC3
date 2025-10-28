@@ -1,0 +1,21 @@
+.ORIG x3000
+; Entrée : R1 contient l'adresse de la première chaîne
+;          R2 contient l'adresse de la deuxième chaîne
+; Sortie : R0 contient un entier positif, négatif ou zéro
+
+LD R0, ZERO      ; Initialiser le résultat à 0
+LOOP:
+    LDR R3, R1, #0 ; Charger un caractère de la première chaîne
+    LDR R4, R2, #0 ; Charger un caractère de la deuxième chaîne
+    BRz COMPARE_END ; Si nul, terminer
+    ADD R5, R3, R4 ; Comparer les caractères
+    BRnz DIFFERENT ; Si différents, arrêter
+    ADD R1, R1, #1 ; Passer au caractère suivant
+    ADD R2, R2, #1
+    BRnzp LOOP     ; Répéter
+DIFFERENT:
+    ADD R0, R3, -R4 ; Calculer la différence
+COMPARE_END:
+    HALT
+ZERO .FILL #0
+.END

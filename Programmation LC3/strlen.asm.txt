@@ -1,0 +1,15 @@
+.ORIG x3000
+; Entrée : R1 contient l'adresse de début de la chaîne
+; Sortie : R0 contient la longueur de la chaîne
+
+LD R0, ZERO      ; Initialiser la longueur à 0
+LOOP:
+    LDR R2, R1, #0 ; Charger le caractère à l'adresse pointée par R1
+    BRz END        ; Si c'est 0 (nul), terminer
+    ADD R0, R0, #1 ; Incrémenter la longueur
+    ADD R1, R1, #1 ; Passer au caractère suivant
+    BRnzp LOOP     ; Répéter
+END:
+    HALT
+ZERO .FILL #0
+.END

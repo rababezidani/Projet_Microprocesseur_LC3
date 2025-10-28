@@ -1,0 +1,17 @@
+.ORIG x3000
+; Entrée : R1 contient l'adresse source
+;          R2 contient l'adresse destination
+;          R0 contient le nombre de caractères à copier
+
+LOOP:
+    BRz END        ; Si R0 = 0, terminer
+    LDR R3, R1, #0 ; Charger un caractère de la source
+    STR R3, R2, #0 ; Écrire dans la destination
+    BRz END        ; Si nul, terminer
+    ADD R1, R1, #1 ; Passer au caractère suivant
+    ADD R2, R2, #1
+    ADD R0, R0, #-1 ; Décrémenter le compteur
+    BRnzp LOOP     ; Répéter
+END:
+    HALT
+.END

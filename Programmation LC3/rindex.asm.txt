@@ -1,0 +1,20 @@
+.ORIG x3000
+; Entrée : R1 contient l'adresse de début de la chaîne
+;          R2 contient le caractère à rechercher
+; Sortie : R0 contient l'adresse de la dernière occurrence ou 0 si absente
+
+LD R0, ZERO      ; Initialiser le résultat à 0
+LOOP:
+    LDR R3, R1, #0 ; Charger le caractère courant
+    BRz END        ; Si nul, terminer
+    ADD R4, R3, R2 ; Comparer le caractère avec R2
+    BRz SAVE       ; Si égal, sauvegarder l'adresse
+    ADD R1, R1, #1 ; Passer au caractère suivant
+    BRnzp LOOP     ; Répéter
+SAVE:
+    ADD R0, R1, #0 ; Stocker l'adresse actuelle
+    BRnzp LOOP
+END:
+    HALT
+ZERO .FILL #0
+.END
