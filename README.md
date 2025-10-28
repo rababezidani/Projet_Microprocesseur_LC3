@@ -83,7 +83,7 @@ Une expérience complète en **systèmes embarqués et architecture processeur**
 
 | Nom | Rôle | Établissement |
 |------|------|----------------|
-| **Rababe Zidani** | Conception des circuits Logisim | Université Paris Cité – EIDD |
+| **Rababe Zidani** | Conception des circuits Logisim et Programmation assembleur | Université Paris Cité – EIDD |
 | **Nissrine Elabjani** | Programmation assembleur & tests | Université Paris Cité – EIDD |
 
 ---
